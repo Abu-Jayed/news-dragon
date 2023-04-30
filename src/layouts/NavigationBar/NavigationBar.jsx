@@ -5,7 +5,15 @@ import { Link } from "react-router-dom";
 import { FaUserSecret } from "react-icons/fa";
 
 const NavigationBar = () => {
-  const { user } = useContext(AuthContext);
+  const { user,logOut } = useContext(AuthContext);
+
+  const handleLogOut = () =>{
+    logOut()
+    .then()
+    .catch(err =>{
+      console.log(err);
+    })
+  }
 
   return (
     <>
@@ -23,7 +31,7 @@ const NavigationBar = () => {
                   <FaUserSecret className="w-6 h-6 fs-2"></FaUserSecret>
               )}
               {user ? (
-                <Button variant="secondary">Logout</Button>
+                <Button onClick={handleLogOut} variant="secondary">Logout</Button>
               ) : (
                 <Link to="/login">
                   <Button variant="secondary">Login</Button>
